@@ -22,4 +22,31 @@ usage: ./darknet <function>
 OPENCV=1
 
 # The next step is to create the image annotation files in YOLO format
+# 1. We need a text file for each image, containing the gate coordinates in YOLO format
+# For this just run my Python script annotation.py
+
+# 2. We also need two files with the train and test image paths
+# These can be produced with annotation-image_paths.py
+
+# 3. Create a file obj.names in the directory darknet/data containing just the word 'Gate'
+
+# 4. Create a file obj.data in the directory darknet/data containing 
+classes = 1
+train  = data/train.txt
+valid  = data/test.txt
+names = data/obj.names
+backup = backup/
+
+# Now download the pre-trained weights with
+wget https://pjreddie.com/media/files/darknet53.conv.74
+
+# Then open the file yolov3-tiny.cfg in darknet/cfg and change the following lines
+# The number of filters equals (classes + 5)3
+# In lines 127, 135, 171 and 177 set 
+filters=18
+
+
+
+
+
 
